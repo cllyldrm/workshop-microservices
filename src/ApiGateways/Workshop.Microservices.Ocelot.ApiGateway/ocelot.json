@@ -1,0 +1,41 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/service-a",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/a",
+      "Key": "ServiceA"
+    },
+    {
+      "DownstreamPathTemplate": "/api/service-b",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/b",
+      "Key": "ServiceB"
+    }
+  ],
+  "Aggregates": [
+    {
+      "ReRouteKeys": [
+        "ServiceA",
+        "ServiceB"
+      ],
+      "UpstreamPathTemplate": "/api/a-b"
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "BaseUrl": "http://localhost:5000"
+  }
+}
