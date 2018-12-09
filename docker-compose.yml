@@ -1,14 +1,21 @@
 version: '3.4'
 
 services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672"
   servicea:
     image: workshop/servicea:${TAG:-latest}
     build:
       context: .
       dockerfile: src/Services/Workshop.Microservices.ServiceA/Dockerfile
     ports:
-    - "5001:5001"
+      - "5001:5001"
     container_name: servicea 
+    depends_on:
+      - rabbitmq
 
   serviceb:
     image: workshop/serviceb:${TAG:-latest}
@@ -16,17 +23,20 @@ services:
       context: .
       dockerfile: src/Services/Workshop.Microservices.ServiceB/Dockerfile    
     ports:
-    - "5002:5002"
+      - "5002:5002"
     container_name: serviceb
-    
+    depends_on:
+      - rabbitmq
+
   ocelotapigateway:
     image: workshop/ocelotapigateway:${TAG:-latest}
     build:
       context: .
       dockerfile: src/ApiGateways/Workshop.Microservices.Ocelot.ApiGateway/Dockerfile
     ports:
-    - "5000:5000"
+      - "5000:5000"
     container_name: ocelotapigateway
     depends_on:
       - servicea
       - serviceb
+      - rabbitmq
