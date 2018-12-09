@@ -5,7 +5,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "servicea",
           "Port": 5001
         }
       ],
@@ -17,7 +17,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "serviceb",
           "Port": 5002
         }
       ],
@@ -35,7 +35,6 @@
     }
   ],
   "GlobalConfiguration": {
-    "RequestIdKey": "OcRequestId",
-    "BaseUrl": "http://localhost:5000"
+    "RequestIdKey": "OcRequestId"
   }
 }

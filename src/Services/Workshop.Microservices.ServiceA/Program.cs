@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore;
+﻿using System.IO;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Workshop.Microservices.ServiceA
@@ -12,6 +13,9 @@ namespace Workshop.Microservices.ServiceA
 
         private static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                   .UseContentRoot(Directory.GetCurrentDirectory())
+                   .UseKestrel()
+                   .UseUrls("http://*:5001")
                    .UseStartup<Startup>();
     }
 }

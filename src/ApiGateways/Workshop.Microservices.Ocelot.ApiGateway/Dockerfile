@@ -1,11 +1,11 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
 WORKDIR /app
-EXPOSE 5001
+EXPOSE 5000
 
 FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
 COPY . .
-WORKDIR /src/src/Services/Workshop.Microservices.ServiceA
+WORKDIR /src/src/ApiGateways/Workshop.Microservices.Ocelot.ApiGateway
 RUN dotnet restore 
 RUN dotnet build --no-restore -c Release -o /app
 
@@ -15,4 +15,4 @@ RUN dotnet publish --no-restore -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Workshop.Microservices.ServiceA.dll"]
+ENTRYPOINT ["dotnet", "Workshop.Microservices.Ocelot.ApiGateway.dll"]

@@ -7,13 +7,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4EEA2F94-3AA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D7F89B94-6694-4244-8028-85448F3D5DD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop.Microservices.ServiceA", "src\Services\Workshop.Microservices.ServiceA\Workshop.Microservices.ServiceA.csproj", "{31F15CEF-D08C-48FF-AE30-070F17FA77DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workshop.Microservices.ServiceA", "src\Services\Workshop.Microservices.ServiceA\Workshop.Microservices.ServiceA.csproj", "{31F15CEF-D08C-48FF-AE30-070F17FA77DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop.Microservices.ServiceB", "src\Services\Workshop.Microservices.ServiceB\Workshop.Microservices.ServiceB.csproj", "{6B5FC3E5-596D-462E-8EA6-858503E76ABF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workshop.Microservices.ServiceB", "src\Services\Workshop.Microservices.ServiceB\Workshop.Microservices.ServiceB.csproj", "{6B5FC3E5-596D-462E-8EA6-858503E76ABF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways", "{AF06E745-6C9D-4595-9801-796D03B5DA91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workshop.Microservices.Ocelot.ApiGateway", "src\ApiGateways\Workshop.Microservices.Ocelot.ApiGateway\Workshop.Microservices.Ocelot.ApiGateway.csproj", "{FDA25617-E118-4B45-9A8A-ACCE518F2EA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workshop.Microservices.Ocelot.ApiGateway", "src\ApiGateways\Workshop.Microservices.Ocelot.ApiGateway\Workshop.Microservices.Ocelot.ApiGateway.csproj", "{FDA25617-E118-4B45-9A8A-ACCE518F2EA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9B837746-3B48-4B6A-8BC2-355FB12A2E92}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

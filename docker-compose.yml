@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  servicea:
+    image: workshop/servicea:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/Workshop.Microservices.ServiceA/Dockerfile
+    ports:
+    - "5001:5001"
+    container_name: servicea 
+
+  serviceb:
+    image: workshop/serviceb:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/Workshop.Microservices.ServiceB/Dockerfile    
+    ports:
+    - "5002:5002"
+    container_name: serviceb
+    
+  ocelotapigateway:
+    image: workshop/ocelotapigateway:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/ApiGateways/Workshop.Microservices.Ocelot.ApiGateway/Dockerfile
+    ports:
+    - "5000:5000"
+    container_name: ocelotapigateway
+    depends_on:
+      - servicea
+      - serviceb
