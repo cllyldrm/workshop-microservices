@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Workshop.Microservices.Domain\Workshop.Microservices.Domain.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Workshop.Microservices.EventBus\Workshop.Microservices.EventBus.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Workshop.Microservices.Extensions\Workshop.Microservices.Extensions.csproj" />
   </ItemGroup>

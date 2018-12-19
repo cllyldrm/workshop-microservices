@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using Workshop.Microservices.Domain.Events;
 using Workshop.Microservices.EventBus.Abstractions;
-using Workshop.Microservices.ServiceA.IntegrationEvents.Events;
 
 namespace Workshop.Microservices.ServiceA.Controllers
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Workshop.Microservices.Domain.Events;
 using Workshop.Microservices.EventBus.Abstractions;
-using Workshop.Microservices.ServiceB.IntegrationEvents.Events;
 
 namespace Workshop.Microservices.ServiceB.IntegrationEvents.EventHandling
 {

@@ -1,6 +1,6 @@
 ﻿using Workshop.Microservices.EventBus.Events;
 
-namespace Workshop.Microservices.ServiceA.IntegrationEvents.Events
+namespace Workshop.Microservices.Domain.Events
 {
     public class SendInformationToServiceBEvent : IntegrationEvent
     {

@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Workshop.Microservices.Domain.Events;
 using Workshop.Microservices.EventBus.Abstractions;
 using Workshop.Microservices.Extensions;
 using Workshop.Microservices.ServiceB.IntegrationEvents.EventHandling;
-using Workshop.Microservices.ServiceB.IntegrationEvents.Events;
 
 namespace Workshop.Microservices.ServiceB
 {
