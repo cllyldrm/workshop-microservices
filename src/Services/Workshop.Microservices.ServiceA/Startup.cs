@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +23,7 @@ namespace Workshop.Microservices.ServiceA
             services.AddMvc();
             services.RegisterRabbitMq(Configuration);
             services.RegisterEventBus(Configuration);
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
 
             return services.BuildWithAutoFac();
         }

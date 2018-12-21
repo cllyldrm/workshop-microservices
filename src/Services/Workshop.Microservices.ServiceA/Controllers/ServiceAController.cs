@@ -1,7 +1,10 @@
-﻿using System;
+﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Workshop.Microservices.Domain.Events;
 using Workshop.Microservices.EventBus.Abstractions;
+using Workshop.Microservices.ServiceA.Commands;
+using Workshop.Microservices.ServiceA.Events;
 
 namespace Workshop.Microservices.ServiceA.Controllers
 {
@@ -10,20 +13,22 @@ namespace Workshop.Microservices.ServiceA.Controllers
     public class ServiceAController : ControllerBase
     {
         private readonly IEventBus _eventBus;
+        private readonly IMediator _mediator;
 
-        public ServiceAController(IEventBus eventBus)
+        public ServiceAController(IEventBus eventBus, IMediator mediator)
         {
             _eventBus = eventBus;
+            _mediator = mediator;
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            Console.WriteLine("Sending event by event bus to rabbitmq");
+            await _mediator.Publish(new AEvent("sending notification from service A"));
 
-            _eventBus.Publish(new SendInformationToServiceBEvent("sending from service A"));
+            await _mediator.Send(new ACommand("sending command from service A"));
 
-            Console.WriteLine("Sent event by event bus to rabbitmq");
+            _eventBus.Publish(new SendInformationToServiceBEvent("sending event by event bus from service A"));
 
             return Ok(new
             {

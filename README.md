@@ -1,6 +1,6 @@
 # Microservices Training
 
-Sample microservice architecture on .net core 2.1 with rabbitMQ and eventbus, also included ocelot api gateway and docker compose.
+Sample microservice architecture on .net core 2.1 with rabbitMQ, mediatR and eventbus, also included ocelot api gateway and docker compose.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ Sample microservice architecture on .net core 2.1 with rabbitMQ and eventbus, al
 
 	docker-compose up
   
-### Api Gateway
+## Api Gateway
 
 There is a json file which name is ocelot. You can find routing and aggregation rules in it. 
 
@@ -59,7 +59,7 @@ There is a json file which name is ocelot. You can find routing and aggregation 
 }
 ````
  
-### EventBus Publishing Event
+## EventBus Publishing Event
 
 There is an abstraction for event bus and rabbitmq client. Inspired from [eShopOnContainers](https://github.com/dotnet-architecture/eShopOnContainers).
  
@@ -82,7 +82,7 @@ Just publish this event from event bus.
     _eventBus.Publish(new SendInformationToServiceBEvent("sending from service A"));
 ````
 
-### EventBus Subscribe Event
+## EventBus Subscribe Event
  
 Create an event handler for subscription.
  
@@ -114,6 +114,86 @@ Finally, subscribe an event handler from event bus.
 
         eventBus.Subscribe<SendInformationToServiceBEvent, SendInformationToServiceBEventHandler>();
     }
+````
+
+## Sending Commands with MediatR
+
+Create an event with mediatR.
+
+````csharp
+    public class ACommand : IRequest<bool>
+    {
+        public string Information { get; private set; }
+
+        public ACommand(string information)
+        {
+            Information = information;
+        }
+    }
+````
+Create a handler which is related with event. 
+
+````csharp
+    public class ACommandHandler : IRequestHandler<ACommand, bool>
+    {
+        public async Task<bool> Handle(ACommand request, CancellationToken cancellationToken)
+        {
+            Console.WriteLine($"ACommandHandler Information: {request.Information} ");
+
+            return true;
+        }
+    }
+````
+Send this command whatever you where.
+
+````csharp
+    await _mediator.Send(new ACommand("sending command from service A"));
+````
+
+## Sending Notifications with MediatR
+
+Create a notification with mediatR.
+
+````csharp
+    public class AEvent : INotification
+    {
+        public string Information { get; private set; }
+
+        public AEvent(string information)
+        {
+            Information = information;
+        }
+    }
+````
+
+Create handlers which are related with notification. 
+
+````csharp
+    public class AEventNotificationHandler : INotificationHandler<AEvent>
+    {
+        public Task Handle(AEvent notification, CancellationToken cancellationToken)
+        {
+            Console.WriteLine($"AEventNotificationHandler Information: {notification.Information} ");
+
+            return Task.FromResult(0);
+        }
+    }
+
+    public class AnotherAEventNotificationHandler : INotificationHandler<AEvent>
+    {
+        public Task Handle(AEvent notification, CancellationToken cancellationToken)
+        {
+            Console.WriteLine($"AnotherAEventNotificationHandler Information: {notification.Information} ");
+
+            return Task.FromResult(0);
+        }
+    }
+````
+
+Send this command whatever you where.
+
+````csharp
+    await _mediator.Publish(new AEvent("sending notification from service A"));
 ````
 
 Ta-da!!
